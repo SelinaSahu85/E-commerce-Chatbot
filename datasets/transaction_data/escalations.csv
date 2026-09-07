@@ -1,0 +1,21 @@
+escalation_id,case_id,reason,status
+ESC001,CASE0010,Warranty Claim,Open
+ESC002,CASE0011,Package Tampered,Open
+ESC003,CASE0013,Service Complaint,Closed
+ESC004,CASE0003,Manager Approval Required,Closed
+ESC005,CASE0005,Customer Dispute,Open
+ESC006,CASE0008,Policy Exception,Closed
+ESC007,CASE0009,High Value Claim,Open
+ESC008,CASE0012,Billing Investigation,Open
+ESC009,CASE0014,Repeated Complaint,Closed
+ESC010,CASE0015,High Value Product,Open
+ESC011,CASE0016,Compensation Approval,Closed
+ESC012,CASE0017,Inventory Verification,Open
+ESC013,CASE0018,Product Verification,Open
+ESC014,CASE0019,Refund Validation,Open
+ESC015,CASE0020,Technical Assessment,Open
+ESC016,CASE0001,Special Approval,Closed
+ESC017,CASE0002,Replacement Validation,Closed
+ESC018,CASE0004,Wrong Product Investigation,Closed
+ESC019,CASE0006,Part Verification,Closed
+ESC020,CASE0007,Voucher Approval,Closed

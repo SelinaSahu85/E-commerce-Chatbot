@@ -1,0 +1,21 @@
+customer_id,customer_name,email,phone,tier,join_date,status
+CUST1001,Rahul Sharma,rahul@gmail.com,9876500001,Gold,2023-01-15,Active
+CUST1002,Priya Singh,priya@gmail.com,9876500002,Silver,2023-02-10,Active
+CUST1003,Amit Kumar,amit@gmail.com,9876500003,Platinum,2023-03-05,Active
+CUST1004,Neha Verma,neha@gmail.com,9876500004,Gold,2023-04-12,Active
+CUST1005,Rohit Gupta,rohit@gmail.com,9876500005,Silver,2023-05-18,Active
+CUST1006,Sneha Patel,sneha@gmail.com,9876500006,Gold,2023-06-01,Active
+CUST1007,Ankit Jain,ankit@gmail.com,9876500007,Silver,2023-06-25,Active
+CUST1008,Pooja Mehta,pooja@gmail.com,9876500008,Platinum,2023-07-11,Active
+CUST1009,Vikram Singh,vikram@gmail.com,9876500009,Gold,2023-08-20,Active
+CUST1010,Kiran Rao,kiran@gmail.com,9876500010,Silver,2023-09-07,Active
+CUST1011,Arjun Nair,arjun@gmail.com,9876500011,Gold,2023-10-12,Active
+CUST1012,Divya Sharma,divya@gmail.com,9876500012,Silver,2023-11-14,Active
+CUST1013,Rakesh Yadav,rakesh@gmail.com,9876500013,Gold,2023-12-01,Active
+CUST1014,Meera Joshi,meera@gmail.com,9876500014,Platinum,2024-01-10,Active
+CUST1015,Varun Kapoor,varun@gmail.com,9876500015,Silver,2024-02-25,Active
+CUST1016,Nidhi Shah,nidhi@gmail.com,9876500016,Gold,2024-03-15,Active
+CUST1017,Manish Verma,manish@gmail.com,9876500017,Silver,2024-04-18,Active
+CUST1018,Ayesha Khan,ayesha@gmail.com,9876500018,Gold,2024-05-08,Active
+CUST1019,Sachin Das,sachin@gmail.com,9876500019,Platinum,2024-06-11,Active
+CUST1020,Ritu Agarwal,ritu@gmail.com,9876500020,Gold,2024-07-20,Active

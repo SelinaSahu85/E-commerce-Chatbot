@@ -1,0 +1,21 @@
+department_id,department_name,department_type
+DEP001,Returns Team,Operations
+DEP002,Warehouse Team,Operations
+DEP003,Inventory Team,Operations
+DEP004,Shipment Team,Logistics
+DEP005,Delivery Team,Logistics
+DEP006,Finance Team,Finance
+DEP007,Customer Care Team,Support
+DEP008,Evidence Review Team,Support
+DEP009,Case Manager Team,Management
+DEP010,Quality Assurance Team,Operations
+DEP011,Replacement Processing Team,Operations
+DEP012,Refund Processing Team,Finance
+DEP013,Voucher Approval Team,Finance
+DEP014,Technical Support Team,Support
+DEP015,Warranty Support Team,Support
+DEP016,Product Verification Team,Operations
+DEP017,Fraud Review Team,Risk
+DEP018,Escalation Team,Support
+DEP019,Compliance Team,Governance
+DEP020,Audit Team,Governance

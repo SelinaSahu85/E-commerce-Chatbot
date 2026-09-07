@@ -1,0 +1,27 @@
+product_id,product_name,category,brand,price,warranty_months,return_window_days
+
+PROD101,Dell Inspiron 15,Laptop,Dell,55000,12,7
+PROD102,HP Pavilion,Laptop,HP,62000,12,7
+PROD103,Galaxy S24,Mobile,Samsung,75000,12,7
+PROD104,iPhone 15,Mobile,Apple,85000,12,7
+
+PROD105,LG Smart TV,Television,LG,45000,24,7
+PROD106,Canon EOS 1500D,Camera,Canon,42000,12,7
+PROD107,Apple Watch,Smartwatch,Apple,35000,12,7
+PROD108,Lenovo Tab M10,Tablet,Lenovo,22000,12,7
+
+PROD109,Boat Headphones,Accessories,Boat,2500,6,15
+PROD110,Sony WH1000XM5,Accessories,Sony,25000,12,15
+PROD111,Logitech Mouse,Accessories,Logitech,1200,6,15
+PROD112,JBL Bluetooth Speaker,Accessories,JBL,5500,12,15
+
+PROD113,Men Regular Fit T-Shirt,Clothing,Levis,999,0,30
+PROD114,Women Casual Kurti,Clothing,Biba,1499,0,30
+PROD115,Men Slim Fit Jeans,Clothing,Wrangler,2499,0,30
+PROD116,Women Denim Jacket,Clothing,Only,2999,0,30
+
+PROD117,Running Shoes,Footwear,Nike,4999,0,30
+PROD118,Casual Sneakers,Footwear,Puma,3999,0,30
+
+PROD119,Non-Stick Cookware Set,Home & Kitchen,Prestige,3499,6,15
+PROD120,Hair Dryer,Beauty & Personal Care,Philips,1999,12,15

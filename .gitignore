@@ -1,0 +1,73 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+.env/
+.venv/
+
+# Environment Variables
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+logs/
+*.log
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Models & Embeddings
+models/
+vectorstore/
+faiss_index/
+*.faiss
+*.pkl
+
+# LangSmith
+langsmith_runs/
+
+# Generated Outputs
+outputs/
+temp/
+tmp/
+
+# Uploaded Evidence
+uploads/
+evidence/
+
+# Database
+*.db
+*.sqlite3
+
+# Cache
+.cache/
+.pytest_cache/
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# Coverage
+htmlcov/
+.coverage
+
+# Secrets
+credentials.json
+service_account.json
+apikeys.json
+config/secrets.yaml

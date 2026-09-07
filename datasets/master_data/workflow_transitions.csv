@@ -1,0 +1,43 @@
+resolution,current_stage,action,next_stage,responsible_department,customer_notification,case_status
+
+Replacement,Case Approval,Approve Replacement,Replacement Processing,Replacement Processing Team,"Your replacement request has been approved.",In Progress
+
+Replacement,Replacement Processing,Create Warehouse Task,Warehouse,Warehouse Team,"Replacement item is being prepared.",In Progress
+
+Replacement,Warehouse,Verify Product Availability,Inventory,Inventory Team,"Replacement item availability is being verified.",In Progress
+
+Replacement,Inventory,Allocate Product,Shipment,Shipment Team,"Replacement item has been allocated for shipping.",In Progress
+
+Replacement,Shipment,Dispatch Replacement,Delivery,Delivery Team,"Your replacement item has been shipped.",In Progress
+
+Replacement,Delivery,Confirm Delivery,Closed,System,"Replacement delivered successfully. Case closed.",Closed
+
+Refund,Case Approval,Approve Refund,Refund Verification,Refund Processing Team,"Your refund request has been approved.",In Progress
+
+Refund,Refund Verification,Validate Refund Eligibility,Finance,Finance Team,"Refund verification is in progress.",In Progress
+
+Refund,Finance,Initiate Refund,Refund Processing,Finance Team,"Refund processing has started.",In Progress
+
+Refund,Refund Processing,Complete Refund,Refund Completed,Finance Team,"Refund has been successfully processed.",In Progress
+
+Refund,Refund Completed,Close Case,Closed,System,"Refund completed. Case closed.",Closed
+
+Voucher,Case Approval,Approve Voucher,Voucher Approval,Voucher Approval Team,"Your compensation request is under review.",In Progress
+
+Voucher,Voucher Approval,Generate Voucher,Voucher Issued,Voucher Approval Team,"A voucher has been issued to your account.",In Progress
+
+Voucher,Voucher Issued,Close Case,Closed,System,"Voucher issued successfully. Case closed.",Closed
+
+Escalate,Case Approval,Escalate To Customer Care,Customer Care,Customer Care Team,"Your case has been escalated for manual review.",Escalated
+
+Escalate,Customer Care,Review Case,Case Manager,Case Manager Team,"Customer Care is reviewing your case.",Escalated
+
+Escalate,Case Manager,Finalize Decision,Closed,System,"Case review completed. Case closed.",Closed
+
+Request Better Evidence,Evidence Review,Request Additional Evidence,Customer Response,Customer,"Additional evidence is required to continue processing your request.",Pending Customer
+
+Customer Response,Customer Response,Review Submitted Evidence,Under Review,Evidence Review Team,"Submitted evidence is under review.",In Progress
+
+Request Missing Information,Open,Request Information,Customer Response,Customer,"Additional information is required to process your request.",Pending Customer
+
+Under Review,Under Review,Evaluate Complaint,Case Approval,Case Manager Team,"Your complaint is currently under review.",In Progress

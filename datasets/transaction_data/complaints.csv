@@ -1,0 +1,21 @@
+case_id,customer_id,order_id,product_id,complaint_type,complaint_text,requested_resolution,evidence_required,recommended_resolution
+CASE0001,CUST1001,ORD5001,PROD101,Damaged Product,"Laptop screen cracked on arrival",Replacement,Yes,Replacement
+CASE0002,CUST1002,ORD5002,PROD102,Defective Product,"Laptop not powering on",Replacement,Yes,Replacement
+CASE0003,CUST1003,ORD5003,PROD103,Damaged Product,"Body dent found on device",Refund,Yes,Refund
+CASE0004,CUST1004,ORD5004,PROD104,Wrong Product,"Received wrong phone model",Replacement,No,Replacement
+CASE0005,CUST1005,ORD5005,PROD105,Missing Item,"Package received empty",Refund,Yes,Refund
+CASE0006,CUST1006,ORD5006,PROD106,Missing Parts,"Charger missing from box",Replacement,Yes,Replacement
+CASE0007,CUST1007,ORD5007,PROD107,Late Delivery,"Delivered after promised date",Compensation,No,Voucher
+CASE0008,CUST1008,ORD5008,PROD108,Refund Request,"Need refund due to dissatisfaction",Refund,No,Refund
+CASE0009,CUST1009,ORD5009,PROD109,Replacement Request,"Replace damaged TV",Replacement,Yes,Replacement
+CASE0010,CUST1010,ORD5010,PROD110,Warranty Claim,"TV malfunction during warranty",Repair,Yes,Escalate
+CASE0011,CUST1011,ORD5011,PROD111,Package Tampered,"Seal broken before delivery",Refund,Yes,Escalate
+CASE0012,CUST1012,ORD5012,PROD112,Billing Issue,"Charged twice",Refund,No,Refund
+CASE0013,CUST1013,ORD5013,PROD113,Service Complaint,"Support not helping",Escalation,No,Escalate
+CASE0014,CUST1014,ORD5014,PROD114,Defective Product,"Keyboard keys not working",Replacement,Yes,Replacement
+CASE0015,CUST1015,ORD5015,PROD115,Damaged Product,"Watch screen cracked",Replacement,Yes,Replacement
+CASE0016,CUST1016,ORD5016,PROD116,Late Delivery,"Package delayed by 10 days",Compensation,No,Voucher
+CASE0017,CUST1017,ORD5017,PROD117,Missing Parts,"Tablet missing adapter",Replacement,Yes,Replacement
+CASE0018,CUST1018,ORD5018,PROD118,Wrong Product,"Wrong tablet capacity received",Replacement,No,Replacement
+CASE0019,CUST1019,ORD5019,PROD119,Refund Request,"Need refund for damaged item",Refund,Yes,Refund
+CASE0020,CUST1020,ORD5020,PROD120,Defective Product,"Speaker produces distorted sound",Replacement,Yes,Replacement

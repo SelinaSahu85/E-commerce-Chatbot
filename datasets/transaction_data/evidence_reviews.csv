@@ -1,0 +1,21 @@
+evidence_id,case_id,result,comments,reviewed_by
+EV001,CASE0001,Valid,Cracked screen visible,EVID001
+EV002,CASE0002,Valid,Device not powering on,EVID001
+EV003,CASE0003,Valid,Dent visible,EVID002
+EV004,CASE0005,Valid,Empty package confirmed,EVID002
+EV005,CASE0006,Valid,Missing charger verified,EVID001
+EV006,CASE0009,Valid,TV damage visible,EVID001
+EV007,CASE0010,Unclear,Need clearer video,EVID003
+EV008,CASE0011,Valid,Tampered seal verified,EVID002
+EV009,CASE0014,Valid,Keyboard keys defective,EVID001
+EV010,CASE0015,Valid,Screen damage confirmed,EVID002
+EV011,CASE0017,Valid,Adapter missing,EVID003
+EV012,CASE0019,Valid,Damage evidence acceptable,EVID002
+EV013,CASE0004,Not Required,Wrong product case,EVID001
+EV014,CASE0007,Not Required,Late delivery case,EVID002
+EV015,CASE0008,Not Required,Refund request,EVID003
+EV016,CASE0012,Not Required,Billing issue,EVID001
+EV017,CASE0013,Not Required,Service complaint,EVID002
+EV018,CASE0016,Not Required,Late delivery,EVID003
+EV019,CASE0018,Not Required,Wrong product,EVID001
+EV020,CASE0020,Valid,Audio defect demonstrated,EVID002
