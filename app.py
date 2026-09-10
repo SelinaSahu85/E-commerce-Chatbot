@@ -1,13 +1,31 @@
 import streamlit as st
 
 from graph.workflow import graph
-from models.schemas import SupportState
+from database.schema import ensure_tables_exist
+from database.repositories import CustomerRepository
 from utils.logger import logger
 
+ensure_tables_exist()
 
 st.set_page_config(page_title="E-Commerce Support Assistant")
 
 st.title("E-Commerce Customer Support Assistant")
+
+
+# --------------------------------------------------
+# Simulated Customer Login
+# --------------------------------------------------
+
+customers_df = CustomerRepository.all()
+
+customer_ids = customers_df["customer_id"].tolist() if not customers_df.empty else ["CUST1001"]
+
+customer_id = st.sidebar.selectbox("Logged in as", customer_ids)
+
+st.sidebar.caption(
+    "This selector simulates customer login for the MVP. "
+    "HITL review pages are under the Pages menu in the sidebar."
+)
 
 
 # --------------------------------------------------
@@ -86,6 +104,7 @@ if user_input:
 
         state = {
             "user_query": user_input,
+            "customer_id": customer_id,
 
             "intent": "",
             "response": "",
@@ -94,11 +113,12 @@ if user_input:
             "requires_hitl": False,
             "review_id": "",
 
+            "case_id": "",
+
             "order_id": complaint_data["order_id"],
             "issue_type": complaint_data["issue_type"],
             "description": complaint_data["description"],
 
-            "complaint_id": "",
             "complaint_status": "",
 
             "pending_field": complaint_data["pending_field"]
@@ -132,10 +152,10 @@ if user_input:
         # Reset after successful complaint creation
         # -----------------------------------------
 
-        if result.get("complaint_id"):
+        if result.get("case_id") and not complaint_data["pending_field"]:
 
             logger.info(
-                f"Complaint Created: {result['complaint_id']}"
+                f"Case Created/Updated: {result['case_id']}"
             )
 
             st.session_state.complaint_data = {
@@ -150,6 +170,9 @@ if user_input:
         # -----------------------------------------
 
         bot_response = result["response"]
+
+        if result.get("sources"):
+            bot_response += "\n\n**Sources:** " + ", ".join(result["sources"])
 
         st.session_state.messages.append(
             {

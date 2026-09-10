@@ -3,6 +3,11 @@ langchain
 langchain-community
 langchain-core
 langchain-google-genai
+langchain-huggingface
+langchain-text-splitters
+
+# Agent Orchestration
+langgraph
 
 # LangSmith Observability
 langsmith
@@ -12,6 +17,9 @@ faiss-cpu
 
 # Embeddings & NLP
 sentence-transformers
+
+# Document Loaders
+docx2txt
 
 # Data Processing
 pandas
@@ -25,6 +33,7 @@ pydantic
 
 # PDF Processing
 pymupdf
+pypdf
 
 # OCR
 paddleocr

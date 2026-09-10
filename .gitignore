@@ -31,11 +31,17 @@ Thumbs.db
 .streamlit/secrets.toml
 
 # Models & Embeddings
-models/
+# NOTE: "models/" is intentionally NOT ignored here — it's the project's
+# Pydantic schema package (models/case.py etc.), not a weights folder.
+# Embeddings are cached by HuggingFace outside the repo; the FAISS index
+# lives under vectorstore/ below.
 vectorstore/
 faiss_index/
 *.faiss
 *.pkl
+
+# Auto-repaired CSV backups (created by database/schema.py on mismatch)
+*.csv.bak
 
 # LangSmith
 langsmith_runs/

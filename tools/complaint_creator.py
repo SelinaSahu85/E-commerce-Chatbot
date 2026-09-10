@@ -1,40 +1,32 @@
-# tools/complaint_creator.py
-
-import uuid
-import pandas as pd
-from pathlib import Path
-
-COMPLAINT_FILE = Path("data/complaints.csv")
+from database.repositories import ComplaintRepository
 
 
 def create_complaint(
+    case_id,
+    customer_id,
     order_id,
-    issue_type,
-    description
+    product_id,
+    complaint_type,
+    complaint_text,
+    requested_resolution="",
+    evidence_required="No",
 ):
     """
-    Create new complaint record.
+    Creates the complaint record linked to an existing case.
     """
 
-    complaint_id = f"CMP-{uuid.uuid4().hex[:8].upper()}"
-
-    complaint_data = {
-        "complaint_id": complaint_id,
+    complaint = {
+        "case_id": case_id,
+        "customer_id": customer_id,
         "order_id": order_id,
-        "issue_type": issue_type,
-        "description": description,
-        "status": "OPEN"
+        "product_id": product_id or "",
+        "complaint_type": complaint_type,
+        "complaint_text": complaint_text,
+        "requested_resolution": requested_resolution,
+        "evidence_required": evidence_required,
+        "recommended_resolution": "",
     }
 
-    df = pd.DataFrame([complaint_data])
+    ComplaintRepository.create(complaint)
 
-    file_exists = COMPLAINT_FILE.exists()
-
-    df.to_csv(
-        COMPLAINT_FILE,
-        mode="a",
-        header=not file_exists,
-        index=False
-    )
-
-    return complaint_data
+    return complaint
