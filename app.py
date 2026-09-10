@@ -1,94 +1,168 @@
 import streamlit as st
 
-from rag.rag_chain import answer_query
+from graph.workflow import graph
+from models.schemas import SupportState
+from utils.logger import logger
 
-st.set_page_config(
-    page_title="Myntra Support Assistant",
-    page_icon="🛍️",
-    layout="wide"
-)
 
-st.title("🛍️ Myntra Customer Support Assistant")
+st.set_page_config(page_title="E-Commerce Support Assistant")
 
-st.markdown("""
-Ask questions about:
+st.title("E-Commerce Customer Support Assistant")
 
-- Returns & Exchanges
-- Refunds
-- Cancellations
-- Order Tracking
-- Delivery
-- Payments
-- Myntra Credit
-- Coupons
-- Gift Cards
-""")
 
+# --------------------------------------------------
 # Session State
+# --------------------------------------------------
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Display Previous Messages
+if "complaint_data" not in st.session_state:
+    st.session_state.complaint_data = {
+        "order_id": "",
+        "issue_type": "",
+        "description": "",
+        "pending_field": ""
+    }
+
+
+# --------------------------------------------------
+# Display Chat History
+# --------------------------------------------------
 
 for message in st.session_state.messages:
 
     with st.chat_message(message["role"]):
-
         st.markdown(message["content"])
 
-        if "sources" in message:
 
-            st.caption(
-                "📄 Sources: " +
-                ", ".join(message["sources"])
-            )
+# --------------------------------------------------
+# Chat Input
+# --------------------------------------------------
 
-# User Input
-
-query = st.chat_input(
-    "Ask your question..."
+user_input = st.chat_input(
+    "Ask a question or raise a complaint..."
 )
 
-if query:
+if user_input:
 
-    # User Message
+    # Display user message
 
     st.session_state.messages.append(
         {
             "role": "user",
-            "content": query
+            "content": user_input
         }
     )
 
     with st.chat_message("user"):
-        st.markdown(query)
+        st.markdown(user_input)
 
-    # Assistant Response
+    try:
 
-    with st.chat_message("assistant"):
+        complaint_data = st.session_state.complaint_data
 
-        with st.spinner("Searching knowledge base..."):
+        pending_field = complaint_data["pending_field"]
 
-            result = answer_query(query)
+        # -----------------------------------------
+        # Store user response if bot is waiting
+        # -----------------------------------------
 
-            answer = result["answer"]
+        if pending_field == "order_id":
 
-            sources = result["sources"]
+            complaint_data["order_id"] = user_input
 
-            st.markdown(answer)
+        elif pending_field == "issue_type":
 
-            st.caption(
-                "📄 Sources: " +
-                ", ".join(sources)
+            complaint_data["issue_type"] = user_input
+
+        elif pending_field == "description":
+
+            complaint_data["description"] = user_input
+
+        # -----------------------------------------
+        # Build Graph State
+        # -----------------------------------------
+
+        state = {
+            "user_query": user_input,
+
+            "intent": "",
+            "response": "",
+            "sources": [],
+
+            "requires_hitl": False,
+            "review_id": "",
+
+            "order_id": complaint_data["order_id"],
+            "issue_type": complaint_data["issue_type"],
+            "description": complaint_data["description"],
+
+            "complaint_id": "",
+            "complaint_status": "",
+
+            "pending_field": complaint_data["pending_field"]
+        }
+
+        logger.info("Invoking graph")
+
+        result = graph.invoke(state)
+
+        logger.info("Graph execution completed")
+
+        # -----------------------------------------
+        # Save Returned State
+        # -----------------------------------------
+
+        complaint_data["pending_field"] = result.get(
+            "pending_field",
+            ""
+        )
+
+        if result.get("order_id"):
+            complaint_data["order_id"] = result["order_id"]
+
+        if result.get("issue_type"):
+            complaint_data["issue_type"] = result["issue_type"]
+
+        if result.get("description"):
+            complaint_data["description"] = result["description"]
+
+        # -----------------------------------------
+        # Reset after successful complaint creation
+        # -----------------------------------------
+
+        if result.get("complaint_id"):
+
+            logger.info(
+                f"Complaint Created: {result['complaint_id']}"
             )
 
-    # Store Chat History
+            st.session_state.complaint_data = {
+                "order_id": "",
+                "issue_type": "",
+                "description": "",
+                "pending_field": ""
+            }
 
-    st.session_state.messages.append(
-        {
-            "role": "assistant",
-            "content": answer,
-            "sources": sources
-        }
-    )
+        # -----------------------------------------
+        # Show Bot Response
+        # -----------------------------------------
+
+        bot_response = result["response"]
+
+        st.session_state.messages.append(
+            {
+                "role": "assistant",
+                "content": bot_response
+            }
+        )
+
+        with st.chat_message("assistant"):
+            st.markdown(bot_response)
+
+    except Exception as e:
+
+        logger.error(str(e))
+
+        st.error(str(e))
