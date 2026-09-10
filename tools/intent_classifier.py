@@ -1,13 +1,16 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 from utils.logger import logger
+from utils.helpers import extract_llm_text
+from prompts.supervisor_prompt import INTENT_CLASSIFICATION_PROMPT
+from config.setting import GEMINI_MODEL
 import os
 
 load_dotenv()
 
 llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash",
-    google_api_key=os.getenv("GEMINI_API_KEY"),
+    model=GEMINI_MODEL,
+    google_api_key=os.getenv("GOOGLE_API_KEY"),
     temperature=0
 )
 
@@ -17,48 +20,7 @@ def classify_intent(query: str) -> str:
     Classify query as enquiry or complaint
     """
 
-    prompt = f"""
-You are an intent classifier for an E-commerce Customer Support Assistant.
-
-Classify the customer query into ONLY one category:
-
-enquiry
-or
-complaint
-
-Rules:
-
-enquiry:
-- return policy
-- exchange policy
-- shipping policy
-- refund policy
-- FAQs
-- product information
-- payment methods
-- general questions
-
-complaint:
-- damaged product
-- missing item
-- wrong product
-- refund not received
-- delayed order
-- defective product
-- cancellation issue
-- delivery issue
-- customer grievance
-
-Customer Query:
-{query}
-
-Return ONLY:
-enquiry
-
-or
-
-complaint
-"""
+    prompt = INTENT_CLASSIFICATION_PROMPT.format(query=query)
 
     try:
 
@@ -66,22 +28,11 @@ complaint
 
         response = llm.invoke(prompt)
 
-        content = response.content
+        content = extract_llm_text(response)
 
-        logger.info(f"Raw Response Type: {type(content)}")
         logger.info(f"Raw Response: {content}")
 
-        # Handle list response
-        if isinstance(content, list):
-
-            cleaned_parts = []
-
-            for item in content:
-                cleaned_parts.append(str(item))
-
-            content = " ".join(cleaned_parts)
-
-        intent = str(content).strip().lower()
+        intent = content.strip().lower()
 
         logger.info(f"Extracted Intent: {intent}")
 

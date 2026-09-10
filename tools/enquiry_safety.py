@@ -2,49 +2,34 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 import os
 
+from tools.guardrails import check_guardrails
+from utils.helpers import extract_llm_text
+from prompts.enquiry_prompt import SAFETY_CHECK_PROMPT
+from config.setting import GEMINI_MODEL
+
 load_dotenv()
 
 llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash",
+    model=GEMINI_MODEL,
     google_api_key=os.getenv("GOOGLE_API_KEY"),
     temperature=0
 )
 
 
 def can_answer_safely(query: str) -> bool:
+    """
+    Deterministic guardrails run first (cheap, no LLM call needed to
+    reject obviously restricted/sensitive requests); only genuinely
+    ambiguous queries fall through to the LLM safety classifier.
+    """
 
-    prompt = f"""
-You are a safety checker for an E-Commerce Customer Support System.
+    guard_result = check_guardrails(query)
 
-Decide whether the AI can answer this query directly.
+    if guard_result["blocked"]:
+        return False
 
-Return ONLY one word:
+    response = llm.invoke(SAFETY_CHECK_PROMPT.format(query=query))
 
-SAFE
-
-or
-
-HITL
-
-HITL cases:
-- account deletion
-- bank details
-- card details
-- payment information
-- customer personal information
-- phone number
-- email address
-- legal complaints
-- consumer court complaints
-- account modifications
-- privacy related requests
-
-Customer Query:
-{query}
-"""
-
-    response = llm.invoke(prompt)
-
-    result = response.content.strip().upper()
+    result = extract_llm_text(response).strip().upper()
 
     return result == "SAFE"
